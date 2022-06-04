@@ -1,7 +1,7 @@
 <<<<<<< HEAD
 # devops-mao-na-massa 
 
-- Exercícios desenvolvidos durante o curso de DevOps Mão na Massa pelo professor Glaucio Guerra.
+- Exercícios desenvolvidos durante o curso de DevOps Mão na Massa do professor Glaucio Guerra.
 
 # Descrição do curso segundo autor:
 
