@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # devops-mao-na-massa 
 
 - Exercícios desenvolvidos durante o curso de DevOps Mão na Massa do professor Glaucio Guerra.
@@ -28,6 +27,3 @@ Uma pequena apresentação dos conceitos DevOps
 - Kubernetes: Aprenda como instalar e configurar o K3s, distribuição mais leve do Kubernetes utilizada em nosso laboratório. O k3s será utilizado na esteira DevOps o passo de CD (Deployment continuo) disponibilizando uma aplicação funcional em NodeJs e Redis.
 
 - Observability: Entenda como instalar configurar o Prometheus, ferramenta de observability muito popular para monitoria de containers e ambientes baseados em microsserviços. Configure dashboards conectados ao Prometheus com o Grafana, ferramenta opensource muito utilizada para visualização de dados e gráficos.
-=======
-# devops-mao-na-massa
->>>>>>> be06457e51fe0839ac237de4cbe74b359d0dfc61
