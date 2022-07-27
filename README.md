@@ -1,4 +1,4 @@
-# DevOps Mã na Massa
+# DevOps Mão na Massa
 
 - Exercícios desenvolvidos durante o curso de DevOps Mão na Massa do professor Glaucio Guerra.
 
