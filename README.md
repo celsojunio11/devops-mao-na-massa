@@ -1,8 +1,8 @@
-# devops-mao-na-massa 
+# DevOps Mã na Massa
 
 - Exercícios desenvolvidos durante o curso de DevOps Mão na Massa do professor Glaucio Guerra.
 
-# Descrição do curso segundo autor:
+# Descrição:
 
   O curso DevOps - Mão na massa! foi criado para atender a demanda de profissionais de T.I que já estão no mercado e desejam uma visão geral do que é DevOps no dia a dia. Esse curso foi inspirado pela necessidade de aprender diversas ferramentas que muitas vezes estão conectadas, porém a literatura ou cursos dificilmente as conectam. O objetivo não é ser especialista em todas as ferramentas citadas, mas sim ter uma visão geral de como é trabalhar com DevOps e servir como um guia para os profissionais que desejam embarcar nessa área tão importante nos dias de hoje.
 
