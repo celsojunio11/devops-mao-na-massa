@@ -8,8 +8,8 @@
   vars:
     - dbhost: "db01"
     - dbname: "notes"
-    - dbusername: "notesapps"
-    - dbpassword: "devopsmãonamassa"
+    - dbusername: "notesapp"
+    - dbpassword: "devopsmaonamassa"
   tasks:
     - name: Configurar hosts do lab ansible
       lineinfile:
@@ -39,6 +39,10 @@
         state: directory
         owner: app
         group: app
+    - name: instalacao do git client
+      yum:
+        name: git
+        state: latest
     - name: Clone repositorio git Notes - app
       git:
         repo: 'https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git'
@@ -49,23 +53,23 @@
       template:
         src: application.properties
         dest: /opt/notes/src/main/resources/application.properties
-    - name: Gerar pacote da aplicação
-        command: mvn -f /opt/notes/pom.xml package
-        become_user: app 
+    - name: Gerar pacote da aplicacao
+      command: mvn -f /opt/notes/pom.xml package
+      become_user: app 
     - name: Registrar versão atual do pacote
-        shell: 
-            cmd: mvn -o -q -Dexec.executable=echo -Dexec.args='${project.version}'
-            chdir: /opt/notes/
-        register: app_version
+      shell: 
+        md: mvn -o -q -Dexec.executable=echo -Dexec.args='${project.version}'
+        chdir: /opt/notes/
+      register: app_version
     - name: Configurar seviço do Systemd 
       template:
         src: etc/systemd/system/notes.service
         src: /etc/systemd/system/notes.service
         notify: reload daemon
     - name: Iniciar serviços notes
-        service:
-          name: notes
-          state: restarted
+      service:
+        name: notes
+        state: restarted
   roles:
       - configuracao-default-so
   handlers:
