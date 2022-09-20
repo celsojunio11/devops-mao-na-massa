@@ -58,14 +58,14 @@
       become_user: app 
     - name: Registrar versão atual do pacote
       shell: 
-        md: mvn -o -q -Dexec.executable=echo -Dexec.args='${project.version}'
+        md: mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '\['
         chdir: /opt/notes/
       register: app_version
     - name: Configurar seviço do Systemd 
       template:
         src: etc/systemd/system/notes.service
-        src: /etc/systemd/system/notes.service
-        notify: reload daemon
+        dest: /etc/systemd/system/notes.service
+      notify: reload daemon
     - name: Iniciar serviços notes
       service:
         name: notes
