@@ -25,10 +25,15 @@
         name: app
         comment: Usuario de aplicação
         uid: 500
-    - name: Instalação do Maven
-      yum:
-        name: maven
-        state: latest
+    - name: Download do Maven
+      get_url:
+        url: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.1.0/apache-maven-3.1.0-bin.tar.gz
+        dest: /opt/apache-maven-3.1.0-bin.tar.gz
+    - name: Unzip do pacote maven
+      ansible.builtin.unarchive:
+        src: /opt/apache-maven-3.1.0-bin.tar.gz
+        dest: /opt/
+        remote_src: yes
     - name: Instalação do Java
       yum:
         name: java-1.8.0-openjdk
@@ -48,17 +53,21 @@
         repo: 'https://github.com/callicoder/spring-boot-mysql-rest-api-tutorial.git'
         dest: /opt/notes
         clone: yes
-        force: yes
+        force: yes 
+    - name: Configurar arquivo pom.xml com repositorios maven central
+      template:
+        src: pom.xml
+        dest: /opt/notes/pom.xml
     - name: Configurar arquivo de propriedades para camada de banco de dados
       template:
         src: application.properties
         dest: /opt/notes/src/main/resources/application.properties
     - name: Gerar pacote da aplicacao
-      command: mvn -f /opt/notes/pom.xml package
+      command: /opt/apache-maven-3.1.0/bin/mvn -f /opt/notes/pom.xml package
       become_user: app 
     - name: Registrar versão atual do pacote
       shell: 
-        md: mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '\['
+        cmd: /opt/apache-maven-3.1.0/bin/mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '\['
         chdir: /opt/notes/
       register: app_version
     - name: Configurar seviço do Systemd 
@@ -66,7 +75,7 @@
         src: etc/systemd/system/notes.service
         dest: /etc/systemd/system/notes.service
       notify: reload daemon
-    - name: Iniciar serviços notes
+    - name: Iniciar serviço notes
       service:
         name: notes
         state: restarted
@@ -80,4 +89,4 @@
         name: 'notes'
     - name: reload daemon
       systemd:
-        deamon_reexec: yes
+        daemon_reexec: yes
