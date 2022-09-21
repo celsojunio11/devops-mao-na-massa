@@ -11,15 +11,6 @@
     - dbusername: "notesapp"
     - dbpassword: "devopsmaonamassa"
   tasks:
-    - name: Configurar hosts do lab ansible
-      lineinfile:
-        dest: /etc/hosts
-        state: present
-        line: "{{item}}"
-      with_items:
-        - 192.168.1.2 control-node
-        - 192.168.1.3 app01
-        - 192.168.1.4 db01
     - name: Adicionar usuario de app
       user:
         name: app
