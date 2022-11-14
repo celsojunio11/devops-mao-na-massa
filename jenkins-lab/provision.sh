@@ -6,7 +6,7 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 yum install java-11-openjdk-devel -y
 yum install jenkins -y
 systemctl daemon-reload
-service start jenkins
+systemctl start jenkins
 
 ###Instalação Docker e Docker Compose
 sudo yum install -y yum-utils
@@ -18,4 +18,4 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 systemctl restart docker
-usermod -aG docker jenkins
+usermod -a -G docker jenkins
